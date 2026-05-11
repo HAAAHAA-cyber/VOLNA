@@ -79,6 +79,16 @@
 </main>
 </div>
 </div>
+    <!-- В форме создания поста -->
+<div class="post-create">
+    <textarea id="postContent" placeholder="Что у вас нового?"></textarea>
+    <input type="file" id="fileInput" multiple accept="image/*,.txt,.pdf,.doc,.docx">
+    <ul id="selectedFiles"></ul>
+    <button id="createPostBtn">Создать пост</button>
+</div>
+
+<!-- Контейнер для постов -->
+<div id="postsContainer"></div>
 
 <script src="js/utils.js"></script>
 <script src="js/auth.js"></script>
