@@ -3,150 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ВОЛНА</title>
-    <style>
-        :root {
-            --bg: linear-gradient(135deg, #4b0082, #0000ff);
-            --panel: #000000;
-            --text: #ffffff;
-            --border: #222222;
-        }
-
-        body {
-            margin: 0;
-            background: var(--bg);
-            background-attachment: fixed;
-            color: var(--text);
-            font-family: -apple-system, system-ui, sans-serif;
-            display: flex;
-            justify-content: center;
-        }
-
-        .app {
-            width: 100%;
-            max-width: 550px;
-            background: var(--panel);
-            min-height: 100vh;
-            border-left: 1px solid var(--border);
-            border-right: 1px solid var(--border);
-        }
-
-        header {
-            padding: 20px;
-            font-weight: 900;
-            font-size: 22px;
-            letter-spacing: -1px;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .post-input {
-            padding: 20px;
-            border-bottom: 6px solid #111;
-        }
-
-        textarea {
-            width: 100%;
-            background: transparent;
-            border: none;
-            color: var(--text);
-            font-size: 18px;
-            outline: none;
-            resize: none;
-            margin-bottom: 15px;
-        }
-
-        .actions {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .btns-left { display: flex; gap: 20px; opacity: 0.5; }
-
-        .post-btn {
-            background: var(--text);
-            color: var(--panel);
-            border: none;
-            padding: 8px 18px;
-            border-radius: 4px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .feed-item {
-            padding: 20px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .user-info {
-            font-weight: bold;
-            font-size: 15px;
-            margin-bottom: 5px;
-            color: #aaa;
-        }
-
-        .content {
-            font-size: 17px;
-            line-height: 1.5;
-        }
-
-        /* Темы */
-        .themes {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            display: flex;
-            gap: 10px;
-        }
-
-        .t-btn {
-            width: 30px;
-            height: 30px;
-            border: 2px solid #fff;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-    </style>
+    <title>Веб‑мессенджер</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<div class="app">
-    <header>
-        ВОЛНА
-        <span style="opacity: 0.4; font-size: 14px;">ЛОВИ МОМЕНТ</span>
-    </header>
-
-    <div class="post-input">
-        <textarea placeholder="Напиши что-нибудь..." rows="3"></textarea>
-        <div class="actions">
-            <div class="btns-left">
-                <span>📷</span>
-                <span>🎤</span>
-                <span>🎨</span>
+    <div class="messenger-container">
+        <!-- Левая панель — список контактов -->
+        <div class="contacts-panel">
+            <div class="search-bar">
+                <input type="text" placeholder="Поиск контактов...">
             </div>
-            <button class="post-btn">Пуск</button>
+            <div class="contacts-list">
+                <div class="contact active" data-chat="1">
+                    <div class="avatar">А</div>
+                    <div class="contact-info">
+                        <div class="contact-name">Анна Иванова</div>
+                        <div class="last-message">Привет, как дела?</div>
+                    </div>
+                    <div class="message-time">14:30</div>
+                </div>
+                <div class="contact" data-chat="2">
+                    <div class="avatar">П</div>
+                    <div class="contact-info">
+                        <div class="contact-name">Пётр Сидоров</div>
+                        <div class="last-message">Отправь фото</div>
+                    </div>
+                    <div class="message-time">13:45</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Правая панель — чат -->
+        <div class="chat-panel">
+            <div class="chat-header">
+                <div class="current-contact">
+                    <div class="avatar">А</div>
+                    <div class="contact-details">
+                        <div class="contact-name">Анна Иванова</div>
+                        <div class="online-status">онлайн</div>
+                    </div>
+                </div>
+            </div>
+            <div class="messages-container" id="messages">
+                <!-- Сообщения будут добавляться здесь -->
+            </div>
+            <div class="message-input">
+                <input type="text" id="messageInput" placeholder="Напишите сообщение...">
+                <button id="sendButton">Отправить</button>
+            </div>
         </div>
     </div>
-
-    <div id="feed">
-        <div class="feed-item">
-            <div class="user-info">admin</div>
-            <div class="content">Добро пожаловать на Волну. Темы переключаются кнопками справа внизу.</div>
-        </div>
-        <div class="feed-item">
-            <div class="user-info">user_01</div>
-            <div class="content">Чистый стиль, ничего лишнего. Как и заказывали.</div>
-        </div>
-    </div>
-</div>
-
-<div class="themes">
-    <div class="t-btn" style="background: blue;" onclick="document.body.style.background='linear-gradient(135deg, #4b0082, #0000ff)'"></div>
-    <div class="t-btn" style="background: #000;" onclick="document.body.style.background='#000'"></div>
-    <div class="t-btn" style="background: #fff;" onclick="document.body.style.background='#fff'; document.body.style.color='#000'"></div>
-</div>
-
+    <script src="script.js"></script>
 </body>
 </html>
