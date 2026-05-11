@@ -2,69 +2,86 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Волна — Подключись и лови волну</title>
+    <title>ВОЛНА - ИТД STYLE</title>
     <style>
+        /* ИТД-стиль: жесткие границы, простые цвета, эмодзи вместо аватарок */
         body {
-            margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            /* Фиолетово-синий перелив */
-            background: linear-gradient(135deg, #6A0DAD, #0000FF, #000000);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
-            height: 100vh;
-            display: flex;
-            color: white;
+            background-color: #1a1a1a; /* Темная тема по дефолту */
+            color: #eee;
+            font-family: "Courier New", Courier, monospace; /* Шрифты в стиле кода */
+            margin: 0; padding: 20px;
         }
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        .sidebar {
-            width: 250px;
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            padding: 20px;
-            border-right: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .main-chat {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            padding: 20px;
-        }
-        .logo { font-size: 24px; font-weight: bold; margin-bottom: 30px; }
-        .message-area {
-            flex-grow: 1;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            margin-bottom: 20px;
-            padding: 20px;
-        }
-        .input-box {
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
+        .container { max-width: 800px; margin: 0 auto; }
+        header { border-bottom: 2px solid #555; padding-bottom: 10px; margin-bottom: 20px; }
+        .logo { font-size: 24px; color: #7b68ee; font-weight: bold; }
+        
+        /* Клановая система (в стиле ИТД) */
+        .clan-tag { padding: 2px 6px; border-radius: 4px; font-size: 12px; margin-right: 5px; }
+        .clan-blue { background: #007bff; }
+        .clan-purple { background: #6f42c1; }
+
+        .post {
+            background: #252525;
+            border: 1px solid #444;
             padding: 15px;
-            border-radius: 10px;
-            color: white;
-            width: 100%;
-            outline: none;
+            margin-bottom: 10px;
+            border-radius: 8px;
         }
+        .post-header { display: flex; align-items: center; margin-bottom: 10px; }
+        .emoji-avatar { font-size: 30px; margin-right: 15px; }
+        
+        .input-area {
+            background: #252525;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px dashed #7b68ee;
+        }
+        textarea {
+            width: 100%;
+            background: #111;
+            color: #0f0; /* Зеленый текст как в терминале */
+            border: 1px solid #444;
+            padding: 10px;
+            box-sizing: border-box;
+            resize: none;
+        }
+        button {
+            background: #7b68ee;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover { background: #5a4db8; }
     </style>
 </head>
 <body>
-    <div class="sidebar">
-        <div class="logo">🌊 ВОЛНА</div>
-        <p>Моя страница</p>
-        <p>Сообщения</p>
-        <p>Друзья</p>
-    </div>
-    <div class="main-chat">
-        <div class="message-area">
-            <h3>Чат: Лови волну</h3>
-            <p><i>Здесь скоро будут твои сообщения...</i></p>
+    <div class="container">
+        <header>
+            <div class="logo">🌊 ВОЛНА / ITD_EDITION</div>
+            <p>Подключись и лови волну (без цензуры и правил)</p>
+        </header>
+
+        <div class="input-area">
+            <textarea rows="3" placeholder="Что на уме? Напиши пост..."></textarea>
+            <button>ОТПРАВИТЬ В ПОТОК</button>
         </div>
-        <input type="text" class="input-box" placeholder="Напиши что-нибудь...">
+
+        <div id="feed">
+            <!-- Пример поста в стиле ИТД -->
+            <div class="post">
+                <div class="post-header">
+                    <div class="emoji-avatar">🐱</div>
+                    <div>
+                        <span class="clan-tag clan-purple">VIOLET_WAVE</span>
+                        <strong>User_404</strong>
+                    </div>
+                </div>
+                <div class="content">Первый пост на Волне! Тут реально свобода как на ИТД.com?</div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
+
