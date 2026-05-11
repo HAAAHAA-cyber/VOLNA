@@ -2,132 +2,151 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>ВОЛНА - ПОДКЛЮЧИСЬ И ЛОВИ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ВОЛНА</title>
     <style>
-        /* Глобальные настройки в стиле ИТД: жирно, ярко, вырвиглазно */
-        * { box-sizing: border-box; cursor: crosshair; }
-        
+        :root {
+            --bg: linear-gradient(135deg, #4b0082, #0000ff);
+            --panel: #000000;
+            --text: #ffffff;
+            --border: #222222;
+        }
+
         body {
             margin: 0;
-            padding: 0;
-            font-family: "Arial Black", sans-serif;
-            /* Фиолетово-синий перелив на фоне */
-            background: linear-gradient(-45deg, #4b0082, #0000ff, #1a1a1a);
-            background-size: 400% 400%;
-            animation: gradient 10s ease infinite;
-            color: #fff;
-            min-height: 100vh;
+            background: var(--bg);
+            background-attachment: fixed;
+            color: var(--text);
+            font-family: -apple-system, system-ui, sans-serif;
+            display: flex;
+            justify-content: center;
         }
 
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .wrapper {
-            max-width: 900px;
-            margin: 0 auto;
-            background: rgba(0, 0, 0, 0.85); /* Черная подложка как на ИТД */
-            min-height: 100vh;
-            border-left: 5px solid #fff;
-            border-right: 5px solid #fff;
-            padding: 20px;
-        }
-
-        .header {
-            font-size: 80px; /* Гигантский текст */
-            line-height: 0.8;
-            letter-spacing: -5px;
-            margin-bottom: 10px;
-            text-shadow: 5px 5px #ff00ff;
-        }
-
-        .slogan {
-            background: #fff;
-            color: #000;
-            display: inline-block;
-            padding: 5px 15px;
-            font-size: 20px;
-            transform: rotate(-1deg);
-            margin-bottom: 40px;
-        }
-
-        .input-wave {
+        .app {
             width: 100%;
-            background: none;
-            border: 5px solid #fff;
-            padding: 20px;
-            color: #fff;
-            font-size: 30px;
-            font-family: "Arial Black";
-            outline: none;
-            margin-bottom: 30px;
+            max-width: 550px;
+            background: var(--panel);
+            min-height: 100vh;
+            border-left: 1px solid var(--border);
+            border-right: 1px solid var(--border);
         }
 
-        .input-wave:focus {
-            background: #fff;
-            color: #000;
+        header {
+            padding: 20px;
+            font-weight: 900;
+            font-size: 22px;
+            letter-spacing: -1px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .post-input {
+            padding: 20px;
+            border-bottom: 6px solid #111;
+        }
+
+        textarea {
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: var(--text);
+            font-size: 18px;
+            outline: none;
+            resize: none;
+            margin-bottom: 15px;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btns-left { display: flex; gap: 20px; opacity: 0.5; }
+
+        .post-btn {
+            background: var(--text);
+            color: var(--panel);
+            border: none;
+            padding: 8px 18px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
         }
 
         .feed-item {
-            border-bottom: 2px dashed #555;
-            padding: 15px 0;
-            font-size: 22px;
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
         }
 
-        .nick {
-            color: #00ffff;
-            text-transform: uppercase;
-            text-decoration: underline;
-        }
-
-        .msg { color: #ff00ff; }
-
-        /* Кнопки тем */
-        .theme-switcher {
-            position: fixed;
-            right: 10px;
-            top: 10px;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-        .t-btn {
-            background: #fff;
-            color: #000;
-            border: none;
-            padding: 10px;
+        .user-info {
             font-weight: bold;
+            font-size: 15px;
+            margin-bottom: 5px;
+            color: #aaa;
+        }
+
+        .content {
+            font-size: 17px;
+            line-height: 1.5;
+        }
+
+        /* Темы */
+        .themes {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .t-btn {
+            width: 30px;
+            height: 30px;
+            border: 2px solid #fff;
+            border-radius: 50%;
             cursor: pointer;
         }
     </style>
 </head>
 <body>
 
-    <div class="theme-switcher">
-        <button class="t-btn" onclick="document.body.style.background='#000'">ЧЕРНЫЙ</button>
-        <button class="t-btn" onclick="document.body.style.background='#fff'; document.body.style.color='#000'">БЕЛЫЙ</button>
-        <button class="t-btn" onclick="location.reload()">ВОЛНА</button>
-    </div>
+<div class="app">
+    <header>
+        ВОЛНА
+        <span style="opacity: 0.4; font-size: 14px;">ЛОВИ МОМЕНТ</span>
+    </header>
 
-    <div class="wrapper">
-        <div class="header">ВОЛНА</div>
-        <div class="slogan">ПОДКЛЮЧИСЬ И ЛОВИ ВОЛНУ</div>
-
-        <input type="text" class="input-wave" placeholder="ЧТО СКАЖЕШЬ?">
-
-        <div id="feed">
-            <div class="feed-item">
-                [<span class="nick">ADMIN</span>] <span class="msg">ДОБРО ПОЖАЛОВАТЬ В ПОТОК.</span>
+    <div class="post-input">
+        <textarea placeholder="Напиши что-нибудь..." rows="3"></textarea>
+        <div class="actions">
+            <div class="btns-left">
+                <span>📷</span>
+                <span>🎤</span>
+                <span>🎨</span>
             </div>
-            <div class="feed-item">
-                [<span class="nick">СИСТЕМА</span>] <span class="msg">ТУТ НЕТ ПРАВИЛ. ЛОВИ КУРАЖ.</span>
-            </div>
+            <button class="post-btn">Пуск</button>
         </div>
     </div>
 
+    <div id="feed">
+        <div class="feed-item">
+            <div class="user-info">admin</div>
+            <div class="content">Добро пожаловать на Волну. Темы переключаются кнопками справа внизу.</div>
+        </div>
+        <div class="feed-item">
+            <div class="user-info">user_01</div>
+            <div class="content">Чистый стиль, ничего лишнего. Как и заказывали.</div>
+        </div>
+    </div>
+</div>
+
+<div class="themes">
+    <div class="t-btn" style="background: blue;" onclick="document.body.style.background='linear-gradient(135deg, #4b0082, #0000ff)'"></div>
+    <div class="t-btn" style="background: #000;" onclick="document.body.style.background='#000'"></div>
+    <div class="t-btn" style="background: #fff;" onclick="document.body.style.background='#fff'; document.body.style.color='#000'"></div>
+</div>
+
 </body>
 </html>
-
-
