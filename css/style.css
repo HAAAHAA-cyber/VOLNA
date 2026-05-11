@@ -543,4 +543,35 @@ body {
     font-size: 12px;
 }
 
+/* Стили для загрузки аватара */
+.avatar-upload {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.user-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #007bff;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.user-avatar:hover {
+    transform: scale(1.05);
+}
+
+.avatar-label {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.avatar-label span {
+    display: block;
+    margin-top: 10px;
+    color: #007bff;
+    font-weight: 500;
+}
 
