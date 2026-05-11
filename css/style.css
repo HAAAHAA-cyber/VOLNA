@@ -482,3 +482,65 @@ body {
     }
 }
 
+/* Стили для вложений */
+.post-attachments {
+    margin: 10px 0;
+}
+
+.attachment-image {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 8px;
+    margin-bottom: 5px;
+}
+
+.attachment-file {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    margin-bottom: 5px;
+}
+
+.file-size {
+    color: #6c757d;
+    font-size: 12px;
+}
+
+/* Стили для хештегов */
+.post-hashtags {
+    margin: 8px 0;
+}
+
+.hashtag {
+    background: #e9ecef;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    color: #007bff;
+}
+
+/* Стиль для репостов */
+.post-card.repost {
+    border-left: 4px solid #007bff;
+    background-color: #f8f9fa;
+}
+
+/* Список выбранных файлов */
+#selectedFiles {
+    list-style: none;
+    padding: 0;
+    margin: 5px 0;
+}
+
+#selectedFiles li {
+    padding: 4px 8px;
+    background: #e9ecef;
+    border-radius: 4px;
+    margin-bottom: 3px;
+    font-size: 12px;
+}
+
+
