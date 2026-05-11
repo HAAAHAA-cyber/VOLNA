@@ -7,29 +7,70 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="messenger-container">
-        <!-- Левая панель — список контактов -->
-        <div class="contacts-panel">
-            <div class="search-bar">
-                <input type="text" placeholder="Поиск контактов...">
+    <!-- Экран авторизации -->
+    <div class="auth-screen active" id="authScreen">
+        <div class="auth-form">
+            <h2>Авторизация</h2>
+            <input type="text" id="loginUsername" placeholder="Имя пользователя">
+            <input type="password" id="loginPassword" placeholder="Пароль">
+            <button id="loginBtn">Войти</button>
+            <p>Нет аккаунта? <a href="#" id="showRegister">Зарегистрироваться</a></p>
+        </div>
+        <div class="register-form" id="registerForm" style="display: none;">
+            <h2>Регистрация</h2>
+            <input type="text" id="regUsername" placeholder="Имя пользователя">
+            <input type="email" id="regEmail" placeholder="Email">
+            <input type="password" id="regPassword" placeholder="Пароль">
+            <button id="registerBtn">Зарегистрироваться</button>
+        </div>
+    </div>
+
+    <!-- Основной интерфейс мессенджера -->
+    <div class="app-container" id="appContainer" style="display: none;">
+        <!-- Левая панель с вкладками -->
+        <div class="sidebar">
+            <div class="user-profile">
+                <div class="avatar">Я</div>
+                <div class="username" id="currentUser">Пользователь</div>
             </div>
-            <div class="contacts-list">
-                <div class="contact active" data-chat="1">
-                    <div class="avatar">А</div>
-                    <div class="contact-info">
-                        <div class="contact-name">Анна Иванова</div>
-                        <div class="last-message">Привет, как дела?</div>
-                    </div>
-                    <div class="message-time">14:30</div>
+            <div class="tabs">
+                <div class="tab active" data-tab="profile">Профиль</div>
+                <div class="tab" data-tab="chats">Чаты</div>
+                <div class="tab" data-tab="groups">Группы</div>
+                <div class="tab" data-tab="channels">Каналы</div>
+                <div class="tab" data-tab="posts">Посты</div>
+            </div>
+        </div>
+
+        <!-- Основная область -->
+        <div class="main-content">
+            <!-- Вкладка постов -->
+            <div class="tab-content" id="posts-tab">
+                <div class="post-create">
+                    <textarea placeholder="Что у вас нового?"></textarea>
+                    <button>Опубликовать</button>
                 </div>
-                <div class="contact" data-chat="2">
-                    <div class="avatar">П</div>
-                    <div class="contact-info">
-                        <div class="contact-name">Пётр Сидоров</div>
-                        <div class="last-message">Отправь фото</div>
-                    </div>
-                    <div class="message-time">13:45</div>
+                <div class="posts-list">
+                    <!-- Посты будут добавляться здесь -->
                 </div>
+            </div>
+
+            <!-- Вкладка чатов -->
+            <div class="tab-content active" id="chats-tab">
+                <div class="stories">
+                    <div class="story active">
+                        <div class="story-avatar">Я</div>
+                        <div class="story-name">Моя история</div>
+                    </div>
+                </div>
+                <div class="contacts-list">
+                    <div class="contact active" data-chat="1">
+                        <div class="avatar online">А</div>
+                        <div class="contact-info">
+                            <div class="contact-name">Анна Иванова</div>
+                            <div class="last-message">Привет, как дела?</div>
+                </div>
+                <div class="message-time">14:30</div>
             </div>
         </div>
 
@@ -39,20 +80,27 @@
                 <div class="current-contact">
                     <div class="avatar">А</div>
                     <div class="contact-details">
-                        <div class="contact-name">Анна Иванова</div>
-                        <div class="online-status">онлайн</div>
-                    </div>
-                </div>
-            </div>
-            <div class="messages-container" id="messages">
-                <!-- Сообщения будут добавляться здесь -->
-            </div>
-            <div class="message-input">
-                <input type="text" id="messageInput" placeholder="Напишите сообщение...">
-                <button id="sendButton">Отправить</button>
+                <div class="contact-name">Анна Иванова</div>
+                <div class="online-status">онлайн</div>
             </div>
         </div>
+        <div class="chat-actions">
+            <button class="action-btn">📞</button>
+            <button class="action-btn">🎥</button>
+        </div>
     </div>
-    <script src="script.js"></script>
+    <div class="messages-container" id="messages">
+        <!-- Сообщения будут добавляться здесь -->
+    </div>
+    <div class="message-input">
+        <button class="input-btn">🎤</button>
+        <button class="input-btn">🎼</button>
+        <button class="input-btn">😊</button>
+        <input type="text" id="messageInput" placeholder="Напишите сообщение...">
+        <button id="sendButton">Отправить</button>
+    </div>
+</div>
+</div>
+<script src="script.js"></script>
 </body>
 </html>
