@@ -400,3 +400,70 @@ function logout() {
     localStorage.removeItem('currentUser');
     showAuth();
 }
+// Обработчик загрузки аватара
+document.addEventListener('DOMContentLoaded', function() {
+    setupAvatarUpload();
+});
+
+function setupAvatarUpload() {
+    const avatarInput = document.getElementById('avatarInput');
+
+    if (!avatarInput) return;
+
+    avatarInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+
+        if (!file) return;
+
+        // Проверка типа файла
+        if (!file.type.startsWith('image/')) {
+            utils.showError('Пожалуйста, выберите изображение (JPG, PNG, WebP)');
+            return;
+        }
+
+        // Проверка размера файла (максимум 2 MB)
+        if (file.size > 2 * 1024 * 1024) {
+            utils.showError('Размер файла не должен превышать 2 MB');
+            return;
+        }
+
+        const reader = new FileReader();
+
+        reader.onload = function(event) {
+            const avatarUrl = event.target.result;
+
+            // Обновляем отображение аватара
+            document.getElementById('currentAvatar').src = avatarUrl;
+
+            // Сохраняем в localStorage
+            currentUser.avatar = avatarUrl;
+            utils.saveToStorage('currentUser', currentUser);
+
+            // Обновляем аватар во всех местах интерфейса
+            updateAvatarEverywhere(avatarUrl);
+
+            utils.showSuccess('Аватар успешно обновлён!');
+        };
+
+        reader.readAsDataURL(file);
+    });
+}
+
+// Функция обновления аватара во всех местах интерфейса
+function updateAvatarEverywhere(avatarUrl) {
+    // Обновляем во всех постах
+    document.querySelectorAll('.post-avatar, .comment-avatar').forEach(el => {
+        el.src = avatarUrl;
+    });
+
+    // Обновляем в шапке (если есть)
+    const headerAvatar = document.getElementById('headerAvatar');
+    if (headerAvatar) {
+        headerAvatar.src = avatarUrl;
+    }
+
+    // Обновляем в чате (если есть)
+    document.querySelectorAll('.chat-avatar').forEach(el => {
+        el.src = avatarUrl;
+    });
+}
