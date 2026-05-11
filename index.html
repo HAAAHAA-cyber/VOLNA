@@ -2,117 +2,132 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ВОЛНА</title>
+    <title>ВОЛНА - ПОДКЛЮЧИСЬ И ЛОВИ</title>
     <style>
-        /* Переключение тем через переменные */
-        :root {
-            --bg: linear-gradient(45deg, #4b0082, #0000ff);
-            --text: #ffffff;
-            --border: #ffffff;
-        }
-        [data-theme="black"] {
-            --bg: #000000;
-            --text: #00ff00; /* Матрица-стайл */
-            --border: #00ff00;
-        }
-        [data-theme="white"] {
-            --bg: #ffffff;
-            --text: #000000;
-            --border: #000000;
+        /* Глобальные настройки в стиле ИТД: жирно, ярко, вырвиглазно */
+        * { box-sizing: border-box; cursor: crosshair; }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Arial Black", sans-serif;
+            /* Фиолетово-синий перелив на фоне */
+            background: linear-gradient(-45deg, #4b0082, #0000ff, #1a1a1a);
+            background-size: 400% 400%;
+            animation: gradient 10s ease infinite;
+            color: #fff;
+            min-height: 100vh;
         }
 
-        body {
-            background: var(--bg);
-            background-attachment: fixed;
-            color: var(--text);
-            font-family: "Arial Black", Gadget, sans-serif;
-            margin: 0;
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.85); /* Черная подложка как на ИТД */
+            min-height: 100vh;
+            border-left: 5px solid #fff;
+            border-right: 5px solid #fff;
             padding: 20px;
         }
 
         .header {
-            font-size: 50px;
-            text-transform: uppercase;
-            border-bottom: 5px solid var(--border);
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .themes {
-            font-size: 14px;
-            cursor: pointer;
-        }
-
-        .themes span {
-            margin-left: 10px;
-            border: 1px solid var(--border);
-            padding: 5px;
-        }
-
-        .post {
-            border-left: 10px solid var(--border);
-            padding: 10px 20px;
-            margin-bottom: 20px;
-            background: rgba(0,0,0,0.2);
-        }
-
-        .nick {
-            color: #ff00ff;
-            text-decoration: underline;
-            cursor: pointer;
-        }
-
-        input {
-            width: 100%;
-            background: none;
-            border: none;
-            border-bottom: 3px solid var(--border);
-            color: var(--text);
-            font-size: 24px;
-            outline: none;
-            padding: 10px 0;
+            font-size: 80px; /* Гигантский текст */
+            line-height: 0.8;
+            letter-spacing: -5px;
+            margin-bottom: 10px;
+            text-shadow: 5px 5px #ff00ff;
         }
 
         .slogan {
-            font-size: 18px;
+            background: #fff;
+            color: #000;
+            display: inline-block;
+            padding: 5px 15px;
+            font-size: 20px;
+            transform: rotate(-1deg);
+            margin-bottom: 40px;
+        }
+
+        .input-wave {
+            width: 100%;
+            background: none;
+            border: 5px solid #fff;
+            padding: 20px;
+            color: #fff;
+            font-size: 30px;
+            font-family: "Arial Black";
+            outline: none;
             margin-bottom: 30px;
+        }
+
+        .input-wave:focus {
+            background: #fff;
+            color: #000;
+        }
+
+        .feed-item {
+            border-bottom: 2px dashed #555;
+            padding: 15px 0;
+            font-size: 22px;
+        }
+
+        .nick {
+            color: #00ffff;
+            text-transform: uppercase;
+            text-decoration: underline;
+        }
+
+        .msg { color: #ff00ff; }
+
+        /* Кнопки тем */
+        .theme-switcher {
+            position: fixed;
+            right: 10px;
+            top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .t-btn {
+            background: #fff;
+            color: #000;
+            border: none;
+            padding: 10px;
+            font-weight: bold;
+            cursor: pointer;
         }
     </style>
 </head>
-<body id="body">
+<body>
 
-    <div class="header">
-        ВОЛНА
-        <div class="themes">
-            <span onclick="setTheme('default')">ФИОЛЕТ</span>
-            <span onclick="setTheme('black')">ЧЕРНЫЙ</span>
-            <span onclick="setTheme('white')">БЕЛЫЙ</span>
+    <div class="theme-switcher">
+        <button class="t-btn" onclick="document.body.style.background='#000'">ЧЕРНЫЙ</button>
+        <button class="t-btn" onclick="document.body.style.background='#fff'; document.body.style.color='#000'">БЕЛЫЙ</button>
+        <button class="t-btn" onclick="location.reload()">ВОЛНА</button>
+    </div>
+
+    <div class="wrapper">
+        <div class="header">ВОЛНА</div>
+        <div class="slogan">ПОДКЛЮЧИСЬ И ЛОВИ ВОЛНУ</div>
+
+        <input type="text" class="input-wave" placeholder="ЧТО СКАЖЕШЬ?">
+
+        <div id="feed">
+            <div class="feed-item">
+                [<span class="nick">ADMIN</span>] <span class="msg">ДОБРО ПОЖАЛОВАТЬ В ПОТОК.</span>
+            </div>
+            <div class="feed-item">
+                [<span class="nick">СИСТЕМА</span>] <span class="msg">ТУТ НЕТ ПРАВИЛ. ЛОВИ КУРАЖ.</span>
+            </div>
         </div>
     </div>
 
-    <div class="slogan">ПОДКЛЮЧИСЬ И ЛОВИ ВОЛНУ</div>
-
-    <div class="input-section">
-        <input type="text" placeholder="НАПИШИ ЧТО-НИБУДЬ И ЖМИ ENTER...">
-    </div>
-
-    <div id="feed" style="margin-top: 50px;">
-        <div class="post">
-            <span class="nick">АДМИН</span>: добро пожаловать на волну. тут всё как на итд.
-        </div>
-        <div class="post">
-            <span class="nick">USER_777</span>: лови волну 🌊🌊🌊
-        </div>
-    </div>
-
-    <script>
-        function setTheme(theme) {
-            if(theme === 'default') document.body.removeAttribute('data-theme');
-            else document.body.setAttribute('data-theme', theme);
-        }
-    </script>
 </body>
 </html>
+
 
